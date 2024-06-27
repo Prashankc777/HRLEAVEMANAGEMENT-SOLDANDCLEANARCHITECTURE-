@@ -22,7 +22,7 @@ namespace HRLeaveManagement.Application.Feature.LeaveType.Commands.Create
         }
         public async Task<int> Handle(CreateLeaveTypeCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateLeaveTypeCommandValidator();
+            var validator = new CreateLeaveTypeCommandValidator(_leaveTypeRepository);
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any())
             {
