@@ -22,7 +22,7 @@ namespace HRLeaveManagement.Application.Feature.LeaveType.Commands.UpdateLeveTyp
         public async Task<Unit> Handle(UpdateLeaveTypeCommand request, CancellationToken cancellationToken)
         {
             var leaveTypeToUpdate = _mapper.Map<HRLeaveManagemnetDomain.LeaveType>(request);
-            await _leaveTypeRepository.UpdateAsync(leaveTypeToUpdate);
+            await _leaveTypeRepository.UpdateAsync(leaveTypeToUpdate.Id , leaveTypeToUpdate);
             return Unit.Value;
 
         }
