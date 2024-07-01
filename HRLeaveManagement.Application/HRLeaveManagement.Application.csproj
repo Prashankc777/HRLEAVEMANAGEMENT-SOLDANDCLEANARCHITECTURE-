@@ -17,4 +17,8 @@
     <ProjectReference Include="..\HRLeaveManagemnetDomain\HRLeaveManagemnetDomain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Logging\" />
+  </ItemGroup>
+
 </Project>
