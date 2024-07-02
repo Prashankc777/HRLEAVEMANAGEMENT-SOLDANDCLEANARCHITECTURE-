@@ -1,4 +1,5 @@
-﻿using HRLeaveManagement.Application.Feature.LeaveType.Commands.Create;
+﻿using HRLeaveManagement.Application.Exceptions;
+using HRLeaveManagement.Application.Feature.LeaveType.Commands.Create;
 using HRLeaveManagement.Application.Feature.LeaveType.Queries.GetAllLeaveTypes;
 using HRLeaveManagement.Application.Feature.LeaveType.Queries.GetLeaveTypeDetails;
 using MediatR;
@@ -19,6 +20,7 @@ public class LeaveTypesController : ControllerBase
     [HttpGet]
     public async Task<List<LeaveTypeDto>> Get()
     {
+      
         var leaveTypes = await _mediator.Send(new GetLeaveTypeQuery());
         return leaveTypes;
     }
@@ -35,6 +37,14 @@ public class LeaveTypesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post(CreateLeaveTypeCommand command)
     {
+        try
+        {
+            throw new BadRequestException("name is required");
+        }
+        catch (BadRequestException e)
+        {
+            throw new BadRequestException(e.Message);
+        }
         var response = await _mediator.Send(command);
         return CreatedAtAction(nameof(Get), new {id = response});
     }

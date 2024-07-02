@@ -2,8 +2,8 @@
 
 namespace Hr.LeaveManagement.Api.Models
 {
-    public class CustomValidationProblemDetails : ProblemDetails
+    public class CustomProblemDetail : ProblemDetails
     {
-        public IDictionary<string, string[]> Errors { get; set; } = new Dictionary<string, string[]>();
+        public IEnumerable<string> Errors { get; set; } = [];
     }
 }
